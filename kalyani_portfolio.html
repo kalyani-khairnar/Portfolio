@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalyani Khairnar – Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --bg2: #16161a;
+    --bg3: #1e1e24;
+    --accent: #7fd4b0;
+    --accent2: #5bbf96;
+    --text: #f0ede8;
+    --muted: #888885;
+    --border: rgba(255,255,255,0.08);
+    --card: #18181e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(14,14,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(8rem, 18vw, 22rem);
+    color: rgba(255,255,255,0.018);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px; background: var(--accent);
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a1f17;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 4rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    color: var(--muted); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 3rem; height: 1px; background: var(--muted);
+    position: relative; overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--accent);
+    animation: slide 2s infinite;
+  }
+  @keyframes slide { 0%{left:-100%} 100%{left:100%} }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 3rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--accent); opacity: 0.4;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--accent); }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 1rem;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-meta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .meta-item label {
+    display: block; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.3rem;
+  }
+  .meta-item span { font-size: 0.95rem; color: var(--text); }
+  .skills-cloud {
+    display: flex; flex-wrap: wrap; gap: 0.7rem;
+    margin-top: 1rem;
+  }
+  .skill-tag {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .skill-tag.featured {
+    background: rgba(127,212,176,0.08);
+    border-color: rgba(127,212,176,0.3);
+    color: var(--accent);
+  }
+
+  /* EXPERIENCE & EDU */
+  #experience { background: var(--bg); }
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; padding-bottom: 3rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -1.5rem;
+    width: 9px; height: 9px;
+    background: var(--accent); border-radius: 50%;
+    margin-top: 8px;
+    transform: translateX(-4px);
+  }
+  .timeline-date {
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.4rem;
+  }
+  .timeline-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+  .timeline-org { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.8rem; }
+  .timeline-desc { color: var(--muted); font-size: 0.95rem; max-width: 560px; }
+
+  .exp-edu-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--bg2); }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.8rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex; flex-direction: column;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: rgba(127,212,176,0.25); transform: translateY(-3px); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-icon {
+    width: 36px; height: 36px;
+    background: rgba(127,212,176,0.1);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1rem; color: var(--accent);
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; font-weight: 400;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+  .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.7; flex: 1; }
+  .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.2rem; }
+  .ptag {
+    font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent); opacity: 0.7; padding: 0.2rem 0;
+  }
+  .project-arrow {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    color: var(--muted); font-size: 1rem;
+    transition: all 0.2s;
+  }
+  .project-card:hover .project-arrow { color: var(--accent); transform: translate(2px,-2px); }
+
+  /* CERTIFICATIONS */
+  #certifications { background: var(--bg); }
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+    margin-top: 1rem;
+  }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.4rem 1.6rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(127,212,176,0.25); }
+  .cert-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: rgba(127,212,176,0.2);
+    line-height: 1; flex-shrink: 0; margin-top: 2px;
+  }
+  .cert-info .cert-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .cert-info .cert-issuer { font-size: 0.82rem; color: var(--muted); }
+
+  /* CONTACT */
+  #contact { background: var(--bg2); text-align: center; }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-email {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--accent);
+    text-decoration: none;
+    display: block;
+    margin: 1.5rem 0 2.5rem;
+    transition: opacity 0.2s;
+  }
+  .contact-email:hover { opacity: 0.75; }
+  .social-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .social-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .social-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 0.8rem; color: var(--muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #home { padding: 5rem 1.5rem 3rem; }
+    .about-grid, .exp-edu-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .scroll-hint { display: none; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">KK</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-text">DATA</div>
+  <div class="hero-eyebrow">Available for opportunities</div>
+  <h1>Kalyani<br><em>Khairnar</em></h1>
+  <p class="hero-desc">
+    Trainee Software Engineer & aspiring Data Analyst turning raw numbers into clear, actionable stories. Python · SQL · Power BI · Data Visualization.
+  </p>
+  <div class="hero-cta">
+    <a href="https://drive.google.com/uc?export=download&id=1-fT6UNv1EtF4cgc6tvMuWOr3AAGK_LZe" class="btn btn-primary" target="_blank">Download CV ↓</a>
+    <a href="#contact" class="btn btn-outline">Get in touch</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>Curious analyst,<br><em>driven by data.</em></h2>
+      <p>I'm a Computer Science graduate currently pursuing my Master's degree, with a deep interest in data analytics and turning complex information into decisions that actually matter.</p>
+      <p>My toolkit spans <strong>Python, SQL, Power BI, Excel, Tableau, Pandas, Matplotlib</strong> and <strong>Seaborn</strong>. I pair these with a strong foundation in statistical analysis and hypothesis testing.</p>
+      <p>I'm eager to contribute to organisations that value data-led innovation — while staying curious and continuously growing.</p>
+      <div class="about-meta">
+        <div class="meta-item"><label>Location</label><span>Nashik, Maharashtra, India</span></div>
+        <div class="meta-item"><label>Languages</label><span>English, Hindi, Marathi</span></div>
+        <div class="meta-item"><label>Status</label><span>Trainee Software Engineer</span></div>
+        <div class="meta-item"><label>Interests</label><span>Travelling, Reading</span></div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;">Technical Skills</p>
+      <div class="skills-cloud">
+        <span class="skill-tag featured">Python</span>
+        <span class="skill-tag featured">SQL</span>
+        <span class="skill-tag featured">Power BI</span>
+        <span class="skill-tag featured">Tableau</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Seaborn</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">Statistical Analysis</span>
+        <span class="skill-tag">Hypothesis Testing</span>
+        <span class="skill-tag">Data Visualization</span>
+        <span class="skill-tag">Data Cleaning</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">OOP</span>
+        <span class="skill-tag">Web Development</span>
+      </div>
+      <p style="font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;margin-top:2.5rem;">Soft Skills</p>
+      <div class="skills-cloud">
+        <span class="skill-tag">Problem-Solving</span>
+        <span class="skill-tag">Critical Thinking</span>
+        <span class="skill-tag">Attention to Detail</span>
+        <span class="skill-tag">Data Storytelling</span>
+        <span class="skill-tag">Project Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE & EDUCATION -->
+<section id="experience">
+  <div class="section-label">02 — Background</div>
+  <div class="exp-edu-grid">
+    <div>
+      <h2><em>Experience</em></h2>
+      <div class="timeline" style="margin-top:2rem;">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">March 2026 – Present</div>
+          <div class="timeline-title">Trainee Software Engineer</div>
+          <div class="timeline-org">Sumago Infotech Pvt. Ltd. · Nashik, Maharashtra</div>
+          <div class="timeline-desc">Building hands-on engineering experience in a professional software environment, applying analytical and development skills to real-world projects.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2><em>Education</em></h2>
+      <div class="timeline" style="margin-top:2rem;">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Pursuing — Master's</div>
+          <div class="timeline-title">M.Sc. Computer Science</div>
+          <div class="timeline-org">Savitribai Phule Pune University</div>
+          <div class="timeline-desc">Deepening expertise in computer science fundamentals and data-driven systems.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">June 2021 – May 2024</div>
+          <div class="timeline-title">B.Sc. Computer Science</div>
+          <div class="timeline-org">KTHM College, Nashik</div>
+          <div class="timeline-desc">Strong foundation in programming, data structures, databases, and analytical thinking.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2019 – 2021</div>
+          <div class="timeline-title">Higher Secondary (HSC)</div>
+          <div class="timeline-org">Maharaja Jivajirao Shinde Mahavidyalaya, Shrigonda</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 — Projects</div>
+  <h2>Selected <em>work.</em></h2>
+  <div class="projects-grid">
+    <a href="https://github.com/kalyani-khairnar/Cybersecurity_Insights" class="project-card" target="_blank">
+      <span class="project-arrow">↗</span>
+      <div class="project-icon">🛡</div>
+      <div class="project-title">Cybersecurity Insights</div>
+      <p class="project-desc">A data-driven project analysing cybersecurity threats, trends, and vulnerabilities using interactive Power BI dashboards.</p>
+      <div class="project-tags">
+        <span class="ptag">Power BI</span>
+        <span class="ptag">Data Analysis</span>
+        <span class="ptag">Visualization</span>
+      </div>
+    </a>
+    <a href="https://github.com/kalyani-khairnar/Zomato_Insights" class="project-card" target="_blank">
+      <span class="project-arrow">↗</span>
+      <div class="project-icon">🍽</div>
+      <div class="project-title">Zomato Insights</div>
+      <p class="project-desc">Power BI dashboard analysing Zomato restaurant data — ratings, pricing, cuisines, online ordering, and location trends through interactive visuals.</p>
+      <div class="project-tags">
+        <span class="ptag">Power BI</span>
+        <span class="ptag">Dashboard</span>
+        <span class="ptag">Business Intelligence</span>
+      </div>
+    </a>
+    <a href="https://github.com/kalyani-khairnar/Moon_landing_Dashboard" class="project-card" target="_blank">
+      <span class="project-arrow">↗</span>
+      <div class="project-icon">🌕</div>
+      <div class="project-title">Moon Landing Dashboard</div>
+      <p class="project-desc">Interactive Power BI dashboard exploring historical moon landings, missions, and space exploration trends across decades.</p>
+      <div class="project-tags">
+        <span class="ptag">Power BI</span>
+        <span class="ptag">Historical Data</span>
+        <span class="ptag">Interactive</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">04 — Certifications</div>
+  <h2>Learning &amp; <em>growth.</em></h2>
+  <div class="certs-grid" style="margin-top:2rem;">
+    <div class="cert-card">
+      <div class="cert-num">01</div>
+      <div class="cert-info">
+        <div class="cert-title">Certified Data Analytics Course</div>
+        <div class="cert-issuer">Technokraft Training Solutions · Aug 2024 – Jan 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-num">02</div>
+      <div class="cert-info">
+        <div class="cert-title">Data Analytics and Visualization Job Simulation</div>
+        <div class="cert-issuer">Accenture North America · Forage · Jan 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-num">03</div>
+      <div class="cert-info">
+        <div class="cert-title">Tata Data Visualisation: Empowering Business with Effective Insights</div>
+        <div class="cert-issuer">Tata Group · Forage · Jan 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-num">04</div>
+      <div class="cert-info">
+        <div class="cert-title">Freedom With AI Masterclass</div>
+        <div class="cert-issuer">Certificate of Achievement</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-num">05</div>
+      <div class="cert-info">
+        <div class="cert-title">Python Certification</div>
+        <div class="cert-issuer">Professional Python programming credential</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center;">05 — Contact</div>
+  <div class="contact-inner">
+    <h2>Let's <em>connect.</em></h2>
+    <p style="color:var(--muted);margin-bottom:0.5rem;">Have an opportunity or want to collaborate? Reach out.</p>
+    <a href="mailto:kalyanikhairnar06@gmail.com" class="contact-email">kalyanikhairnar06@gmail.com</a>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/kalyanikhairnar" class="social-link" target="_blank">↗ LinkedIn</a>
+      <a href="https://github.com/kalyani-khairnar" class="social-link" target="_blank">↗ GitHub</a>
+      <a href="tel:+918010855836" class="social-link">↗ +91 80108 55836</a>
+      <a href="https://drive.google.com/uc?export=download&id=1-fT6UNv1EtF4cgc6tvMuWOr3AAGK_LZe" class="social-link" target="_blank">↗ Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Kalyani Khairnar</p>
+  <p>Nashik, Maharashtra, India</p>
+</footer>
+
+</body>
+</html>
